@@ -62,3 +62,47 @@ export const deletePet = /* GraphQL */ `mutation DeletePet(
   APITypes.DeletePetMutationVariables,
   APITypes.DeletePetMutation
 >;
+
+export const createTransaction = /* GraphQL */ `mutation SubmitTransaction(
+  $transactionId: ID!,
+  $customerId: String!,
+  $supportRegionId: String!,
+  $walletId: String!,
+  $amount: Float!,
+  $screenshot: Blob,
+  $agentId: String!,
+  $paymentCheck: Boolean!,
+  $paymentCheckTime: AWSDateTime,
+  $note: String,
+  $transactionDate: AWSDateTime!,
+  $paymentDeniedCheck: Boolean!
+) {
+  createTransaction(input: {
+    transactionId: $transactionId,
+    customerId: $customerId,
+    supportRegionId: $supportRegionId,
+    walletId: $walletId,
+    amount: $amount,
+    screenshot: $screenshot,
+    agentId: $agentId,
+    paymentCheck: $paymentCheck,
+    paymentCheckTime: $paymentCheckTime,
+    note: $note,
+    transactionDate: $transactionDate,
+    paymentDeniedCheck: $paymentDeniedCheck
+  }) {
+    transactionId
+    customerId
+    supportRegionId
+    walletId
+    amount
+    screenshot
+    agentId
+    paymentCheck
+    paymentCheckTime
+    note
+    transactionDate
+    paymentDeniedCheck
+  }
+}
+`;

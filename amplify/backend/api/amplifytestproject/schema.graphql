@@ -10,3 +10,17 @@ type pet @model{
     updatedAt: AWSDateTime!
 }
 
+type Transaction @model {
+  transactionId: ID!
+  customerId: String!
+  supportRegionId: String!
+  walletId: String!
+  amount: Float!
+  screenshot: String
+  agentId: String!
+  paymentCheck: Boolean!
+  paymentCheckTime: AWSDateTime
+  note: String
+  transactionDate: AWSDateTime!
+  paymentDeniedCheck: Boolean!
+}
