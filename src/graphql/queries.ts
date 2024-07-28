@@ -8,25 +8,76 @@ type GeneratedQuery<InputType, OutputType> = string & {
   __generatedQueryOutput: OutputType;
 };
 
-export const getPet = /* GraphQL */ `query GetPet($id: ID!) {
-  getPet(id: $id) {
+export const getTransaction = /* GraphQL */ `query GetTransaction($id: ID!) {
+  getTransaction(id: $id) {
     id
-    name
-    type
-    owner
+    customer {
+      id
+      name
+      createdAt
+      updatedAt
+      __typename
+    }
+    supportRegion {
+      id
+      name
+      createdAt
+      updatedAt
+      __typename
+    }
+    wallet {
+      id
+      WalletAccount
+      createdAt
+      updatedAt
+      __typename
+    }
+    amount
+    screenshot
+    agent {
+      id
+      name
+      createdAt
+      updatedAt
+      __typename
+    }
+    paymentCheck
+    paymentCheckTime
+    note
+    transactionDate
+    paymentDeniedCheck
     createdAt
     updatedAt
     __typename
   }
 }
-` as GeneratedQuery<APITypes.GetPetQueryVariables, APITypes.GetPetQuery>;
-export const listPets = /* GraphQL */ `query ListPets($filter: ModelPetFilterInput, $limit: Int, $nextToken: String) {
-  listPets(filter: $filter, limit: $limit, nextToken: $nextToken) {
+` as GeneratedQuery<
+  APITypes.GetTransactionQueryVariables,
+  APITypes.GetTransactionQuery
+>;
+export const listTransactions = /* GraphQL */ `query ListTransactions(
+  $id: ID
+  $filter: ModelTransactionFilterInput
+  $limit: Int
+  $nextToken: String
+  $sortDirection: ModelSortDirection
+) {
+  listTransactions(
+    id: $id
+    filter: $filter
+    limit: $limit
+    nextToken: $nextToken
+    sortDirection: $sortDirection
+  ) {
     items {
       id
-      name
-      type
-      owner
+      amount
+      screenshot
+      paymentCheck
+      paymentCheckTime
+      note
+      transactionDate
+      paymentDeniedCheck
       createdAt
       updatedAt
       __typename
@@ -35,4 +86,221 @@ export const listPets = /* GraphQL */ `query ListPets($filter: ModelPetFilterInp
     __typename
   }
 }
-` as GeneratedQuery<APITypes.ListPetsQueryVariables, APITypes.ListPetsQuery>;
+` as GeneratedQuery<
+  APITypes.ListTransactionsQueryVariables,
+  APITypes.ListTransactionsQuery
+>;
+export const getCustomer = /* GraphQL */ `query GetCustomer($id: ID!) {
+  getCustomer(id: $id) {
+    id
+    name
+    transactions {
+      id
+      amount
+      screenshot
+      paymentCheck
+      paymentCheckTime
+      note
+      transactionDate
+      paymentDeniedCheck
+      createdAt
+      updatedAt
+      __typename
+    }
+    createdAt
+    updatedAt
+    __typename
+  }
+}
+` as GeneratedQuery<
+  APITypes.GetCustomerQueryVariables,
+  APITypes.GetCustomerQuery
+>;
+export const listCustomers = /* GraphQL */ `query ListCustomers(
+  $id: ID
+  $filter: ModelCustomerFilterInput
+  $limit: Int
+  $nextToken: String
+  $sortDirection: ModelSortDirection
+) {
+  listCustomers(
+    id: $id
+    filter: $filter
+    limit: $limit
+    nextToken: $nextToken
+    sortDirection: $sortDirection
+  ) {
+    items {
+      id
+      name
+      createdAt
+      updatedAt
+      __typename
+    }
+    nextToken
+    __typename
+  }
+}
+` as GeneratedQuery<
+  APITypes.ListCustomersQueryVariables,
+  APITypes.ListCustomersQuery
+>;
+export const getSupportRegion = /* GraphQL */ `query GetSupportRegion($id: ID!) {
+  getSupportRegion(id: $id) {
+    id
+    name
+    transactions {
+      id
+      amount
+      screenshot
+      paymentCheck
+      paymentCheckTime
+      note
+      transactionDate
+      paymentDeniedCheck
+      createdAt
+      updatedAt
+      __typename
+    }
+    createdAt
+    updatedAt
+    __typename
+  }
+}
+` as GeneratedQuery<
+  APITypes.GetSupportRegionQueryVariables,
+  APITypes.GetSupportRegionQuery
+>;
+export const listSupportRegions = /* GraphQL */ `query ListSupportRegions(
+  $id: ID
+  $filter: ModelSupportRegionFilterInput
+  $limit: Int
+  $nextToken: String
+  $sortDirection: ModelSortDirection
+) {
+  listSupportRegions(
+    id: $id
+    filter: $filter
+    limit: $limit
+    nextToken: $nextToken
+    sortDirection: $sortDirection
+  ) {
+    items {
+      id
+      name
+      createdAt
+      updatedAt
+      __typename
+    }
+    nextToken
+    __typename
+  }
+}
+` as GeneratedQuery<
+  APITypes.ListSupportRegionsQueryVariables,
+  APITypes.ListSupportRegionsQuery
+>;
+export const getWallet = /* GraphQL */ `query GetWallet($id: ID!) {
+  getWallet(id: $id) {
+    id
+    WalletAccount
+    transactions {
+      id
+      amount
+      screenshot
+      paymentCheck
+      paymentCheckTime
+      note
+      transactionDate
+      paymentDeniedCheck
+      createdAt
+      updatedAt
+      __typename
+    }
+    createdAt
+    updatedAt
+    __typename
+  }
+}
+` as GeneratedQuery<APITypes.GetWalletQueryVariables, APITypes.GetWalletQuery>;
+export const listWallets = /* GraphQL */ `query ListWallets(
+  $id: ID
+  $filter: ModelWalletFilterInput
+  $limit: Int
+  $nextToken: String
+  $sortDirection: ModelSortDirection
+) {
+  listWallets(
+    id: $id
+    filter: $filter
+    limit: $limit
+    nextToken: $nextToken
+    sortDirection: $sortDirection
+  ) {
+    items {
+      id
+      WalletAccount
+      createdAt
+      updatedAt
+      __typename
+    }
+    nextToken
+    __typename
+  }
+}
+` as GeneratedQuery<
+  APITypes.ListWalletsQueryVariables,
+  APITypes.ListWalletsQuery
+>;
+export const getAgent = /* GraphQL */ `query GetAgent($id: ID!) {
+  getAgent(id: $id) {
+    id
+    name
+    transactions {
+      id
+      amount
+      screenshot
+      paymentCheck
+      paymentCheckTime
+      note
+      transactionDate
+      paymentDeniedCheck
+      createdAt
+      updatedAt
+      __typename
+    }
+    createdAt
+    updatedAt
+    __typename
+  }
+}
+` as GeneratedQuery<APITypes.GetAgentQueryVariables, APITypes.GetAgentQuery>;
+export const listAgents = /* GraphQL */ `query ListAgents(
+  $id: ID
+  $filter: ModelAgentFilterInput
+  $limit: Int
+  $nextToken: String
+  $sortDirection: ModelSortDirection
+) {
+  listAgents(
+    id: $id
+    filter: $filter
+    limit: $limit
+    nextToken: $nextToken
+    sortDirection: $sortDirection
+  ) {
+    items {
+      id
+      name
+      createdAt
+      updatedAt
+      __typename
+    }
+    nextToken
+    __typename
+  }
+}
+` as GeneratedQuery<
+  APITypes.ListAgentsQueryVariables,
+  APITypes.ListAgentsQuery
+>;

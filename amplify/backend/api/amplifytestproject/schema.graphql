@@ -1,26 +1,40 @@
-# This "input" configures a global authorization rule to enable public access to
-# all models in this schema. Learn more about authorization rules here: https://docs.amplify.aws/cli/graphql/authorization-rules
-input AMPLIFY { globalAuthRule: AuthRule = { allow: public } } # FOR TESTING ONLY!
-type pet @model{
-    id: ID!
-    name: String!
-    type: String!
-    owner: String!
-    createdAt: AWSDateTime!
-    updatedAt: AWSDateTime!
-}
-
-type Transaction @model {
-  transactionId: ID!
-  customerId: String!
-  supportRegionId: String!
-  walletId: String!
+type Transaction @model @auth(rules: [{ allow: public }]) {
+  id: ID! @primaryKey
+  customer: Customer!
+  supportRegion: SupportRegion!
+    
+  wallet: Wallet! 
   amount: Float!
   screenshot: String
-  agentId: String!
+  agent: Agent! 
   paymentCheck: Boolean!
   paymentCheckTime: AWSDateTime
   note: String
   transactionDate: AWSDateTime!
   paymentDeniedCheck: Boolean!
+}
+
+type Customer @model @auth(rules: [{ allow: public }]) {
+  id: ID! @primaryKey
+  name: String!
+  transactions: [Transaction] 
+}
+
+type SupportRegion @model @auth(rules: [{ allow: public }]) {
+  id: ID! @primaryKey
+  name: String!
+  transactions: [Transaction]
+   
+}
+
+type Wallet @model @auth(rules: [{ allow: public }]) {
+  id: ID! @primaryKey
+  WalletAccount: String!
+  transactions: [Transaction]
+}
+
+type Agent @model @auth(rules: [{ allow: public }]) {
+  id: ID! @primaryKey
+  name: String!
+  transactions: [Transaction] 
 }
